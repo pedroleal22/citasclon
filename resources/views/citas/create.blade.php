@@ -11,13 +11,12 @@
                         @include('flash::message')
 
                         {!! Form::open(['route' => 'citas.store']) !!}
+
                         <div class="form-group">
                             {!! Form::label('fecha_hora', 'Fecha y hora de la cita') !!}
 
 
                             <input type="datetime-local" id="fecha_hora" name="fecha_hora" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d\Th:i')}}" />
-
-
                         </div>
 
                         <div class="form-group">
@@ -30,6 +29,17 @@
                             <br>
                             {!! Form::select('paciente_id', $pacientes, ['class' => 'form-control']) !!}
                         </div>
+
+                        <div class="form-group">
+                            {!! Form::label('localizacion', 'Localizacion') !!}
+                            {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('duracion', 'Duracion') !!}
+                            {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                        </div>
+
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
                         {!! Form::close() !!}

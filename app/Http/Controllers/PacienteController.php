@@ -50,7 +50,9 @@ class PacienteController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
-            'nuhsa' => 'required|nuhsa|max:255'
+            #'nuhsa' => 'required|nuhsa|max:255'
+            'nuhsa' => 'required|max:255'
+
         ]);
 
         //TODO: crear validación propia para nuhsa

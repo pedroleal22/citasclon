@@ -7,6 +7,8 @@ use App\Cita;
 use App\Medico;
 use App\Paciente;
 
+use Carbon\Carbon as Time;
+
 
 class CitaController extends Controller
 {
@@ -111,6 +113,7 @@ class CitaController extends Controller
             'medico_id' => 'required|exists:medicos,id',
             'paciente_id' => 'required|exists:pacientes,id',
             'fecha_hora' => 'required|date|after:now',
+
 
         ]);
         $cita = Cita::find($id);

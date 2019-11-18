@@ -37,7 +37,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'CGIS') }}
+                        {{ config('app.name', 'IS') }}
                     </a>
                 </div>
 
@@ -82,6 +82,13 @@
                                             Citas
                                         </a>
                                     </li>
+
+                                    <li>
+                                        <a href="{{ url('/enfermedads') }}">
+                                            Enfermedades
+                                        </a>
+                                    </li>
+
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                            onclick="event.preventDefault();

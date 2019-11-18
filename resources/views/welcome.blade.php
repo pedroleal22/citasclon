@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                     CGIS: Citas Pacientes JAMMP
+                     IS: Citas Pacientes JAMMP
                 </div>
 
                 <div class="links">
