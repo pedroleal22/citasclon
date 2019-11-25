@@ -10,7 +10,7 @@ use App\Medico;
 class MedicoController extends Controller
 {
 
-    public function __construct()
+    public function __construct() //ejecuta una lógica de negocio entre controlador: tipo de usuario
     {
         $this->middleware('auth');
     }
@@ -84,12 +84,8 @@ class MedicoController extends Controller
      */
     public function edit($id)
     {
-        //
-
         $medico = Medico::find($id);
-
         $especialidades = Especialidad::all()->pluck('name','id');
-
 
         return view('medicos/edit',['medico'=> $medico, 'especialidades'=>$especialidades ]);
     }
