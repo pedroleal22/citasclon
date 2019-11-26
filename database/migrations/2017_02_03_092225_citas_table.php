@@ -18,6 +18,7 @@ class CitasTable extends Migration
             $table->dateTime('fecha_hora');
             $table->unsignedInteger('medico_id');
             $table->unsignedInteger('paciente_id');
+
             $table->string('localizacion')->default('Sin localización');
             $table->string('duracion')->default('15');
 
