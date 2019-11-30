@@ -21,6 +21,8 @@
                                 <th>Paciente</th>
                                 <th>Localización</th>
                                 <th>Duración</th>
+                                <th>Hora finalización</th>
+
 
                                 <th colspan="2">Acciones</th>
                             </tr>
@@ -34,6 +36,8 @@
                                     <td>{{ $cita->paciente->full_name}}</td>
                                     <td>{{ $cita->localizacion}}</td>
                                     <td>{{ $cita->duracion}}</td>
+                                    <td>{{ $cita->hora_fin}}</td>
+
 
                                     <td>
                                         {!! Form::open(['route' => ['citas.edit',$cita->id], 'method' => 'get']) !!}

@@ -8,7 +8,7 @@ use Carbon\Carbon as Time;
 
 class Cita extends Model
 {
-    protected $fillable = ['fecha_hora', 'medico_id', 'paciente_id', 'localizacion', 'duracion'];
+    protected $fillable = ['fecha_hora', 'medico_id', 'paciente_id', 'localizacion', 'duracion', 'hora_fin'];
 
     public function medico()
     {
@@ -21,8 +21,24 @@ class Cita extends Model
     }
 
 /*
-      /** Calcular hora fin de una cita dada su duración @return string
+      /** Calcular hora fin de una cita dada su duración @return string*/
 
+/*
+    public static function calcHoraFin($fecha_hora, $duracion) {
+
+        $duracion = duracion;
+        $hora_fin = $fecha_hora;
+
+        //$hora_fin->add(new DateInterval('PT' . $duracion2 . 'M'));
+        $hora_fin->modify("+{$duracion} minutes");
+/*
+        // Calcular hora fin
+        return Time::createFromTime($hora_inicio->hour, $hora_inicio->minute)
+            ->addHours($duracion->hour)
+            ->addMinutes($duracion->minute)
+            ->toTimeString();*/
+    //}
+/*
     public static function calcHoraFin($pDuracion, $pHoraInicio) {
 
         // Parse duración
@@ -40,7 +56,7 @@ class Cita extends Model
             ->addHours($duracion->hour)
             ->addMinutes($duracion->minute)
             ->toTimeString();
-    }
+    }*/
 
     /**Calcular duracion de una cita    @return string
 

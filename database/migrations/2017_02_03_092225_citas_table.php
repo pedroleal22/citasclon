@@ -22,11 +22,7 @@ class CitasTable extends Migration
             $table->string('localizacion')->default('Sin localización');
             $table->string('duracion')->default('15');
 
-/*
-            $table->time('hora_inicio'); // start_time
-            $table->time('hora_fin');   //end_time
-            $table->date('dia');        //date
-*/
+            $table->dateTime('hora_fin');
 
             $table->timestamps();
 
@@ -34,8 +30,6 @@ class CitasTable extends Migration
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
         });
     }
-
-
 
     /**
      * Reverse the migrations.

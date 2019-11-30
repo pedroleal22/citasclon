@@ -14,8 +14,6 @@
 
                         <div class="form-group">
                             {!! Form::label('fecha_hora', 'Fecha y hora de la cita') !!}
-
-
                             <input type="datetime-local" id="fecha_hora" name="fecha_hora" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d\Th:i')}}" />
                         </div>
 
@@ -34,11 +32,30 @@
                             {!! Form::label('localizacion', 'Localizacion') !!}
                             {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
+                    <!--
 
                         <div class="form-group">
                             {!! Form::label('duracion', 'Duracion') !!}
                             {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
+                            -->
+
+                        <div class="form-group">
+                            <label name= "duracion" for="duracion"> Duración </label>
+                            <select class="form-control" id="duracion" name="duracion">
+                                <option value="15"> 15 </option>
+                                <option value="20"> 20 </option>
+                                <option value="25"> 25 </option>
+                                <option value="30"> 30 </option>
+                                <option value="35"> 35 </option>
+                                <option value="40"> 40 </option>
+                                <option value="45"> 45 </option>
+                                <option value="50"> 50 </option>
+                                <option value="55"> 55 </option>
+                            </select>
+                        </div>
+
+
 
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
