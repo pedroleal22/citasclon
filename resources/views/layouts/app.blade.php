@@ -50,6 +50,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+
+                        <!-- Si el usuario es un guest (no está logged in)-->
+
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Registrar</a></li>
@@ -88,6 +91,13 @@
                                             Enfermedades
                                         </a>
                                     </li>
+
+                                    <li>
+                                        <a href="{{ url('/locations') }}">
+                                            Localizaciones
+                                        </a>
+                                    </li>
+
 
                                     <li>
                                         <a href="{{ url('/logout') }}"

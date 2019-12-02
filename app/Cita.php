@@ -8,7 +8,7 @@ use Carbon\Carbon as Time;
 
 class Cita extends Model
 {
-    protected $fillable = ['fecha_hora', 'medico_id', 'paciente_id', 'localizacion', 'duracion', 'hora_fin'];
+    protected $fillable = ['fecha_hora', 'medico_id', 'paciente_id', 'location_id', 'duracion', 'hora_fin'];
 
     public function medico()
     {
@@ -18,6 +18,11 @@ class Cita extends Model
     public function paciente()
     {
         return $this->belongsTo('App\Paciente');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo('App\Location');
     }
 
 /*

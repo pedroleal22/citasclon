@@ -14,7 +14,8 @@
 
                         <div class="form-group">
                             {!! Form::label('fecha_hora', 'Fecha y hora de la cita') !!}
-                            <input type="datetime-local" id="fecha_hora" name="fecha_hora" class="form-control" value="{{Carbon\Carbon::now()->format('Y-m-d\Th:i')}}" />
+                            <!-- Corregido para que aparezca la fecha y hora previa -->
+                                <input type="datetime-local" id="fecha_hora" name="fecha_hora" class="form-control" value= "{{Carbon\Carbon::parse($cita->hora_fin)->format('Y-m-d\Th:i')}}"/>
                         </div>
 
                         <div class="form-group">
@@ -29,8 +30,15 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('localizacion', 'Localización') !!}
-                            {!! Form::text('loacalizacion',$cita->localizacion,['class'=>'form-control', 'required']) !!}
+                            {!!Form::label('location_id', 'Hospital') !!}
+                            <br>
+                            {!! Form::select('location_id', $locations, $cita->location_id, ['class' => 'form-control']) !!}
+                        <!--</div>
+
+                        <!--<div class="form-group"> -->
+                            {!!Form::label('location_id', 'Consulta') !!}
+                            <br>
+                            {!! Form::select('location_id', $locationsConsulta, $cita->location_id, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">

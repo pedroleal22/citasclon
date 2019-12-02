@@ -29,8 +29,15 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('localizacion', 'Localizacion') !!}
-                            {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!!Form::label('location_id', 'Hospital') !!}
+                            <br>
+                            {!! Form::select('location_id', $locations, ['class' => 'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!!Form::label('location_id', 'Consulta') !!}
+                            <br>
+                            {!! Form::select('location_id', $locationsConsulta, ['class' => 'form-control']) !!}
                         </div>
                     <!--
 

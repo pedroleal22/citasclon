@@ -25,7 +25,6 @@ class MedicoController extends Controller
         $medicos = Medico::all();
 
         return view('medicos/index',['medicos'=>$medicos]);
-
     }
 
     /**
@@ -35,9 +34,7 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        //
         $especialidades = Especialidad::all()->pluck('name','id');
-
         return view('medicos/create',['especialidades'=>$especialidades]);
 
     }
