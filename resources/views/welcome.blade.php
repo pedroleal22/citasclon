@@ -13,8 +13,8 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background-color: #D3FFE9;
+                color: #090909;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -50,7 +50,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #4B5043;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -79,16 +79,30 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                     IS: Citas Pacientes JAMMP
+                     CitApp
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Laravel</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravelcollective.com/docs/5.3/html">Formularios</a>
-                    <a href="http://php.net/manual/es/langref.php">PHP</a>
-                    <a href="https://www.mysql.com/products/workbench/">MySQL</a>
+                    <a href="http://citas.test/pacientes">Pacientes</a>
+                    <a href="http://citas.test/medicos">Médicos</a>
+                    <a href="http://citas.test/citas">Citas</a>
+                    <a href="http://citas.test/locations">Localización</a>
+                    <a href="http://citas.test/especialidades">Especialidad</a>
+
+                    <h3> Gestione las citas de sus pacientes con este sistema personalizado para su centro médico.  </h3>
+
+
                 </div>
+
+                <div aling="right">
+                    <h4> Desarrollo de la aplicación por el equipo de desarrollo JAMMP.
+                       <!--
+                        <h3>Ana Caamaño Cundíns, Celia Rivilla Piñango, Pedro Leal del Ojo Rosselló, María Eugenia Parejo Balas y Juan Manuel Martínez Rivero <h3/>
+                        -->
+                        <h4> ETSII Universidad de Sevilla. 2019 <h4/>
+
+                </div>
+
             </div>
         </div>
     </body>
