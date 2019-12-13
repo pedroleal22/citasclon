@@ -18,7 +18,13 @@ class CreatePacientesTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('nuhsa');
+            $table->unsignedInteger('enfermedad_id');
             $table->timestamps();
+
+            $table->foreign('enfermedad_id')->references('id')->on('enfermedads');
+
+
+
         });
     }
 
@@ -30,5 +36,6 @@ class CreatePacientesTable extends Migration
     public function down()
     {
         Schema::drop('pacientes');
+
     }
 }

@@ -15,9 +15,9 @@ class Paciente extends Model
         return $this->hasMany('App\Cita');
     }
 
-    public function enfermedads()
+    public function enfermedad()
     {
-        return $this->belongTo('App\Enfermedad');
+        return $this->belongsTo('App\Enfermedad'); //related
     }
 
 
