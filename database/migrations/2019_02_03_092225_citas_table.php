@@ -27,7 +27,7 @@ class CitasTable extends Migration
 
             $table->foreign('medico_id')->references('id')->on('medicos')->onDelete('cascade');
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null'); //
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade'); //
 
         });
     }

@@ -29,7 +29,8 @@ Route::resource('enfermedads', 'EnfermedadController');
 
 Route::resource('locations', 'LocationController');
 
-
+Route::resource('medicinas','MedicinaController');
+Route::resource('tratamientos','TratamientoController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
