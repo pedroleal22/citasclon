@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enfermedad;
 use App\Medicina;
+use App\Medico;
+use App\Paciente;
 use App\Tratamiento;
 use Illuminate\Http\Request;
 
@@ -26,9 +29,20 @@ class TratamientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('tratamientos/create');
+    public function create(){
+
+        //'id');
+        //            $table->dateTime('fecha_inicio');
+        //            $table->dateTime('fecha_fin');
+        //            $table->string('descripcion');
+
+        $medicos = Medico::all()->pluck('full_name','id');
+        $pacientes = Paciente::all()->pluck('full_name','id');
+        $enfermedads = Enfermedad::all()->pluck('nombreComun','id');
+
+        return view('tratamientos/create',['medicos'=>$medicos, 'pacientes'=>$pacientes,'enfermedads'=>$enfermedads]);
+
+
     }
 
     /**
@@ -42,7 +56,10 @@ class TratamientoController extends Controller
         $this->validate($request, [
             'fecha_inicio' => 'required|date|after:now',
             'fecha_fin' => 'required|date|after:now',
-            'descripcion' => 'required|max:255'
+            'descripcion' => 'required|max:255',
+            'medico_id' => 'required|exists:medicos,id',
+            'paciente_id' => 'required|exists:pacientes,id',
+            'enfermedad_id' => 'required|exists:enfermedads,id'
         ]);
 
 
@@ -75,7 +92,12 @@ class TratamientoController extends Controller
     public function edit($id)
     {
         $tratamiento = Tratamiento::find($id);
-        return view('tratamientos/edit',['tratamiento'=> $tratamiento]);
+
+        $medicos = Medico::all()->pluck('full_name','id');
+        $pacientes = Paciente::all()->pluck('full_name','id');
+        $enfermedads = Enfermedad::all()->pluck('nombreComun','id');
+
+        return view('tratamientos/edit',['tratamiento'=> $tratamiento, 'medicos'=>$medicos, 'pacientes'=>$pacientes, 'enfermedads'=>$enfermedads]);
 
     }
 
@@ -91,7 +113,10 @@ class TratamientoController extends Controller
         $this->validate($request, [
             'fecha_inicio' => 'required|date|after:now',
             'fecha_fin' => 'required|date|after:now',
-            'descripcion' => 'required|max:255'
+            'descripcion' => 'required|max:255',
+            'medico_id' => 'required|exists:medicos,id',
+            'paciente_id' => 'required|exists:pacientes,id',
+            'enfermedad_id' => 'required|exists:enfermedads,id'
         ]);
 
         $tratamiento=Tratamiento::find($id);

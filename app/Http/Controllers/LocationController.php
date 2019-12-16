@@ -108,8 +108,20 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy($id)
     {
-        //
+
+        $location = Location::find($id);
+        $location->delete();
+
+        flash('Localización borrada correctamente');
+
+        return redirect()->route('locations.index');
+        //$location = Location::find($id);
+        //$location->delete();
+        //flash('Localización borrada correctamente');
+
+        //return redirect()->route('locations.index');
+
     }
 }

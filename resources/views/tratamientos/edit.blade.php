@@ -26,6 +26,21 @@
                             {!! Form::label('descripcion', 'Descripción del tratamiento') !!}
                             {!! Form::text('descripcion',$tratamiento->descripcion,['class'=>'form-control', 'required']) !!}
                         </div>
+                        <div class="form-group">
+                            {!!Form::label('medico_id', 'Medico') !!}
+                            <br>
+                            {!! Form::select('medico_id', $medicos, $tratamiento->medico_id, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!!Form::label('paciente_id', 'Paciente') !!}
+                            <br>
+                            {!! Form::select('paciente_id', $pacientes, $tratamiento->paciente_id, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!!Form::label('enfermedad_id', 'Enfermedad') !!}
+                            <br>
+                            {!! Form::select('enfermedad_id', $enfermedads, $tratamiento->enfermedad_id, ['class' => 'form-control']) !!}
+                        </div>
 
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
