@@ -27,6 +27,7 @@ Route::get('/citasPasadas','CitaController@citasPasadas')->name('citas.citasPasa
 Route::resource('citas', 'CitaController');
 
 //Route::delete('enfermedads/destroyAll', 'EnfermedadController@destroyAll')->name('enfermedads.destroyAll');
+
 Route::resource('enfermedads', 'EnfermedadController');
 
 Route::resource('locations', 'LocationController');

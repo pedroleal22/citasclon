@@ -20,6 +20,9 @@
                                 <th>Fecha de inicio</th>
                                 <th>Fecha de fin</th>
                                 <th>Descripción</th>
+                                <th>Medico</th>
+                                <th>Paciente</th>
+                                <th>Enfermedad</th>
 
 
 
@@ -33,6 +36,9 @@
                                     <td>{{ $tratamiento->fecha_inicio}}</td>
                                     <td>{{ $tratamiento->fecha_fin}}</td>
                                     <td>{{ $tratamiento->descripcion}}</td>
+                                    <td>{{ $tratamiento->medico->full_name }}</td>
+                                    <td>{{ $tratamiento->paciente->full_name}}</td>
+                                    <td>{{ $tratamiento->enfermedad->nombreComun}}</td>
 
 
 

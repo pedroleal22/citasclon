@@ -25,6 +25,11 @@ class Paciente extends Model
         return $this->belongsTo('App\Especialidad'); //related
     }
 
+    public function tratamientos()
+    {
+        return $this->hasMany('App\Tratamiento');
+    }
+
 
     public function getFullNameAttribute()
     {

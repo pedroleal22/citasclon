@@ -31,7 +31,6 @@ class LocationController extends Controller
      */
     public function create()
     {
-
         return view('locations/create');
 
     }
@@ -111,11 +110,18 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        $location = Location::find($id);
 
+        $location = Location::find($id);
         $location->delete();
-        flash('Localizacion borrada correctamente');
+
+        flash('Localización borrada correctamente');
 
         return redirect()->route('locations.index');
+        //$location = Location::find($id);
+        //$location->delete();
+        //flash('Localización borrada correctamente');
+
+        //return redirect()->route('locations.index');
+
     }
 }
