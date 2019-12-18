@@ -26,10 +26,22 @@ class CitaController extends Controller
      */
     public function index()
     {
-        $citas = Cita::all();
+       $citas = Cita::all()->where('fecha_hora','>', Carbon::now());
 
         return view('citas/index',['citas'=>$citas]);
+
+
     }
+
+    public function citasPasadas(){
+
+        $citaspasadas = Cita::all()->where('fecha_hora','<', Carbon::now());
+        return view('citas/citasPasadas',['citas'=>$citaspasadas]);
+
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -130,7 +142,7 @@ class CitaController extends Controller
         ]);
         $cita = Cita::find($id);
 
-       //$cita->fill($request->all());
+        //$cita->fill($request->all());
         /*
        $cita->fill([$request->medico_id,
             $request->paciente_id,

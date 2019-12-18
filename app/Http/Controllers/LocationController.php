@@ -31,6 +31,7 @@ class LocationController extends Controller
      */
     public function create()
     {
+
         return view('locations/create');
 
     }
@@ -108,8 +109,13 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy($id)
     {
-        //
+        $location = Location::find($id);
+
+        $location->delete();
+        flash('Localizacion borrada correctamente');
+
+        return redirect()->route('locations.index');
     }
 }

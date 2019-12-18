@@ -41,7 +41,7 @@ class TratamientoController extends Controller
     {
         $this->validate($request, [
             'fecha_inicio' => 'required|date|after:now',
-            'fecha_fin' => 'required|date|after:now',
+            'fecha_fin' => 'required|date|after:fecha_inicio',
             'descripcion' => 'required|max:255'
         ]);
 
@@ -90,7 +90,7 @@ class TratamientoController extends Controller
     {
         $this->validate($request, [
             'fecha_inicio' => 'required|date|after:now',
-            'fecha_fin' => 'required|date|after:now',
+            'fecha_fin' => 'required|date|after:fecha_inicio',
             'descripcion' => 'required|max:255'
         ]);
 

@@ -25,6 +25,10 @@ class Cita extends Model
         return $this->belongsTo('App\Location');
     }
 
+
+
+
+
 /*
       /** Calcular hora fin de una cita dada su duración @return string*/
 
