@@ -115,6 +115,7 @@
 
 
 
+
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                            onclick="event.preventDefault();
