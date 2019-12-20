@@ -13,27 +13,51 @@ class MedicacionController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index($id)
     {
-        $medicacions = Medicacion::all();
-
+        $medicacions = Medicacion::all()->where('tratamiento_id',$id)->get();
         return view('medicacions/index',['medicacions'=>$medicacions]);
     }
-
+    public function findByTratamiento($id)
+    {
+        $tratamiento = Tratamiento::find($id);
+        $medicacions = Medicacion::all()->where('tratamiento_id',$id);
+        return view('medicacions/index',['medicacions'=>$medicacions, 'tratamiento' => $tratamiento]);
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $tratamientos = Tratamiento::all()->pluck('descripcion','id');
-        $medicinas = Medicina::all()->pluck('name','id');
-
-        return view('medicacions/create',['tratamientos'=>$tratamientos],['medicinas'=>$medicinas]);
-
+        return view('medicacions/create', ['id'=> $id]);
     }
 
+    public function createByTratamiento($id){
+        $tratamiento = Tratamiento::find($id);
+        $medicinas = Medicina::all()->pluck('name','id');
+        return view('medicacions/create', ['tratamiento'=> $tratamiento, 'medicinas'=>$medicinas]);
+    }
+
+    public function storeToTratamiento(Request $request){
+        $this->validate($request,[
+
+            'tratamiento_id' => 'required|exists:tratamientos,id',
+            'medicina_id' => 'required|exists:medicinas,id',
+            'unidades' => 'required|max:255',
+            'frecuencia' => 'required|max:255',
+            'instrucciones' => 'required|max:255',
+
+        ]);
+
+        $medicacion = new Medicacion($request->all());
+        $medicacion->save();
+
+        flash('Medicacion creada correctamente');
+        return redirect()-> route('medicacion.findByTratamiento',['id'=>$medicacion->tratamiento_id]);
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -56,8 +80,7 @@ class MedicacionController extends Controller
         $medicacion->save();
 
         flash('Medicacion creada correctamente');
-
-        return redirect()->route('medicacions.index');
+        return redirect()->route('medicacions.index', ["id" => $medicacion->tratamiento_id]);
     }
 
     /**
@@ -80,10 +103,9 @@ class MedicacionController extends Controller
     public function edit($id)
     {
         $medicacion = Medicacion::find($id);
-        $tratamientos = Tratamiento::all()->pluck('descripcion','id');
         $medicinas = Medicina::all()->pluck('name','id');
 
-        return view('medicacions/edit',['medicacion'=> $medicacion, 'tratamientos'=>$tratamientos,'medicinas'=>$medicinas ]);
+        return view('medicacions/edit',['medicacion'=> $medicacion, 'medicinas' => $medicinas ]);
 
 
 
@@ -99,7 +121,7 @@ class MedicacionController extends Controller
      * @param  \App\Medicacion  $medicacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $this->validate($request, [
             'tratamiento_id' => 'required|exists:tratamientos,id',
@@ -110,14 +132,14 @@ class MedicacionController extends Controller
 
         ]);
 
-        $medicacion = Medicacion::find($id);
+        $medicacion = Medicacion::find($request->get('medicacion_id'));
         $medicacion->fill($request->all());
 
         $medicacion->save();
 
         flash('Medicacion modificada correctamente');
 
-        return redirect()->route('medicacions.index');
+        return redirect()->route('medicacion.findByTratamiento',["id"=> $medicacion->tratamiento_id]);
     }
 
     /**
@@ -132,6 +154,6 @@ class MedicacionController extends Controller
         $medicacion->delete();
         flash('Medicacion borrada correctamente');
 
-        return redirect()->route('medicacions.index');
+        return redirect()->route('medicacion.findByTratamiento',["id"=> $medicacion->tratamiento_id]);
     }
 }

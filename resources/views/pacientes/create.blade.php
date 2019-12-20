@@ -11,7 +11,7 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::open(['route' => 'pacientes.store']) !!}
+                        {!! Form::open(['route' => 'pacientes.storeToTratamiento']) !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Nombre del paciente') !!}
                             {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}

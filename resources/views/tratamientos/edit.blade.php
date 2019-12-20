@@ -31,6 +31,47 @@
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
                         {!! Form::close() !!}
+
+                        <div class="form-group">
+                            {!! Form::open(['route' => ['medicacions.create','id'=> $tratamiento->id], 'method' => 'get']) !!}
+                            {!!   Form::submit('Añadir medicación', ['class'=> 'btn btn-warning'])!!}
+                            {!! Form::close() !!}
+                        </div>
+
+                        <table class="table table-striped table-bordered">
+                            <tr>
+                                <th>Medicamento</th>
+                                <th>Unidades</th>
+                                <th>Frecuencia</th>
+                                <th>Instrucciones</th>
+
+                                <th colspan="2">Acciones</th>
+
+                            </tr>
+
+                            @foreach ($medicacions as $medicacion)
+
+
+                                <tr>
+                                    <td>{{ $medicacion->unidades }}</td>
+                                    <td>{{ $medicacion->frecuencia }}</td>
+                                    <td>{{ $medicacion->instrucciones}}</td>
+
+                                    <td>
+                                        {!! Form::open(['route' => ['medicinas.edit',$medicacion->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                    <td>
+
+                                        {!! Form::open(['route' => ['medicinas.destroy',$medicacion->id], 'method' => 'delete']) !!}
+                                        {!!   Form::submit('Borrar', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}
+                                        {!! Form::close() !!}
+
+                                    </td>
+                                </tr>
+                        @endforeach
+
                     </div>
                 </div>
             </div>

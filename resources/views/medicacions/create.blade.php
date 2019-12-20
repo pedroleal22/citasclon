@@ -5,18 +5,16 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Crear Medicacion</div>
+                    <div class="panel-heading">Añadir medicación al tratamiento <?php echo $tratamiento->descripcion;?></div>
 
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::open(['route' => 'medicacions.store']) !!}
+                        {!! Form::open(['route' => 'medicacion.storeToTratamiento']) !!}
 
-                        <div class="form-group">
-                            {!!Form::label('tratamiento_id', 'Tratamiento') !!}
-                            <br>
-                            {!! Form::select('tratamiento_id', $tratamientos, ['class' => 'form-control', 'required']) !!}
-                        </div>
+
+                            {!! Form::hidden('tratamiento_id',$tratamiento->id,['class'=>'form-control', 'required']) !!}
+
 
                         <div class="form-group">
                             {!!Form::label('medicina_id', 'Medicina') !!}

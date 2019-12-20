@@ -35,7 +35,7 @@
                                 <th>Hora finalización</th>
 
 
-                                <th colspan="2">Acciones</th>
+                                <th colspan="3">Acciones</th>
                             </tr>
 
                             @foreach ($citas as $cita)
@@ -48,7 +48,7 @@
                                     <td>{{ $cita->location->hospital}}</td>
                                     <td>{{ $cita->location->consulta}}</td>
                                     <td>{{ $cita->duracion}}</td>
-                                    <td>{{ $cita->hora_fin}}</td>
+                                    <td>{{ $cita->getHoraFin() }}</td>
 
 
                                     <td>
@@ -62,6 +62,7 @@
                                         {!! Form::close() !!}
 
                                     </td>
+
                                 </tr>
 
                             @endforeach

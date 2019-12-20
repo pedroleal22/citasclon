@@ -10,7 +10,6 @@ class Medicacion extends Model
     protected $fillable = ['tratamiento_id', 'medicina_id', 'unidades','frecuencia','instrucciones'];
 
 
-
     public function tratamiento()
     {
         return $this->belongsTo('App\Tratamiento'); //related

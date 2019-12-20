@@ -22,7 +22,7 @@
                                 <th>Descripción</th>
 
 
-                                <th colspan="2">Acciones</th>
+                                <th colspan="3">Acciones</th>
                             </tr>
 
                             @foreach ($tratamientos as $tratamiento)
@@ -40,11 +40,20 @@
                                         {!!   Form::submit('Editar', ['class'=> 'btn btn-warning'])!!}
                                         {!! Form::close() !!}
                                     </td>
+
+                                    <td>
+                                        {!! Form::open(['route' => ['medicacion.findByTratamiento',$tratamiento->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Medicación', ['class'=> 'btn btn-success'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
+
                                     <td>
                                         {!! Form::open(['route' => ['tratamientos.destroy',$tratamiento->id], 'method' => 'delete']) !!}
                                         {!!   Form::submit('Borrar', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}
                                         {!! Form::close() !!}
                                     </td>
+
+
                                 </tr>
                             @endforeach
                         </table>

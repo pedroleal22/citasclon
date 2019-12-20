@@ -27,21 +27,22 @@ class CitaController extends Controller
     public function index()
     {
        $citas = Cita::all()->where('fecha_hora','>', Carbon::now());
-
         return view('citas/index',['citas'=>$citas]);
-
-
     }
 
     public function citasPasadas(){
 
         $citaspasadas = Cita::all()->where('fecha_hora','<', Carbon::now());
         return view('citas/citasPasadas',['citas'=>$citaspasadas]);
-
     }
+    /*
+    public function addTratamiento($id){
 
+        $tratamiento = Tratamiento::find($id);
+        $medicacions = Medicacion::where('tratamiento_id', $id)->get();
+        return view('tratamiento/create', ['tratamiento' => $tratamiento, 'medicacions' => $medicacions]);
 
-
+    }*/
 
     /**
      * Show the form for creating a new resource.
@@ -75,22 +76,12 @@ class CitaController extends Controller
             'duracion' => 'required|max:255',
         ]);
 
-        $cita = Cita::create([
-            'medico_id' => $request->medico_id,
-            'paciente_id' => $request->paciente_id,
-            'fecha_hora' => $request->fecha_hora,
-            'location_id' => $request->location_id,
-            'duracion' => $request->duracion,
-            'hora_fin' => Carbon::parse($request['fecha_hora'])->modify("+{$request['duracion']} minutes")
-
-        ]);
-
+        $cita = new Cita($request->all());
         $cita->save();
 
         flash('Cita creada correctamente');
 
         return redirect()->route('citas.index');
-
     }
 
     /**
@@ -133,36 +124,16 @@ class CitaController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+        'medico_id' => 'required|exists:medicos,id',
+        'paciente_id' => 'required|exists:pacientes,id',
+        'fecha_hora' => 'required|date|after:now',
+        'location_id' => 'required|max:255',
+        'duracion' => 'required|max:255',
+    ]);
 
-            'medico_id' => 'required|exists:medicos,id',
-            'paciente_id' => 'required|exists:pacientes,id',
-            'fecha_hora' => 'required|date|after:now',
-            'location_id' => 'required|max:255',
-            'duracion' => 'required|max:255',
-        ]);
         $cita = Cita::find($id);
-
-        //$cita->fill($request->all());
-        /*
-       $cita->fill([$request->medico_id,
-            $request->paciente_id,
-            $request->fecha_hora,
-            //'localizacion' => $request->localizacion,
-           $request->duracion,
-            Carbon::parse($request['fecha_hora'])->modify("+{$request['duracion']} minutes")->format('Y-m-d\Th:i')
-        ]);*/
-
-        $cita2 = Cita::create([
-            'medico_id' => $request->medico_id,
-            'paciente_id' => $request->paciente_id,
-            'fecha_hora' => $request->fecha_hora,
-            'location_id' => $request->location_id,
-            'duracion' => $request->duracion,
-            'hora_fin' => Carbon::parse($request['fecha_hora'])->modify("+{$request['duracion']} minutes")
-        ]);
-
-        $cita->delete();
-        $cita2->save();
+        $cita->fill($request->all());
+        $cita->save();
 
         flash('Cita modificada correctamente');
 

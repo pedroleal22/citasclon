@@ -20,9 +20,15 @@ class TratamientoController extends Controller
     {
 
         $tratamientos = Tratamiento::all();
-
         return view('tratamientos/index',['tratamientos'=>$tratamientos]);
 
+    }
+
+    public function addMedicacion($id)
+    {
+        $tratamiento = Tratamiento::find($id);
+        $medicacions = Medicacion::where('tratamiento_id', $id)->get();
+        return view('tratamientos/addMedicacion', ['tratamiento' => $tratamiento, 'medicacions' => $medicacions]);
     }
 
     /**
@@ -92,8 +98,6 @@ class TratamientoController extends Controller
     {
         $tratamiento = Tratamiento::find($id);
 
-
-
         return view('tratamientos/edit',['tratamiento'=> $tratamiento]);
 
     }
@@ -111,7 +115,6 @@ class TratamientoController extends Controller
             'fecha_inicio' => 'required|date|after:now',
             'fecha_fin' => 'required|date|after:fecha_inicio',
             'descripcion' => 'required|max:255',
-
         ]);
 
         $tratamiento=Tratamiento::find($id);

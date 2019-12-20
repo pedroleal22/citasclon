@@ -5,19 +5,15 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Editar medicacion</div>
+                    <div class="panel-heading">Editar medicación</div>
 
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::model($medicacion, [ 'route' => ['medicacions.update',$medicacion->id], 'method'=>'PUT']) !!}
+                        {!! Form::model($medicacion, [ 'route' => ['medicacion.update',$medicacion->id], 'method'=>'PUT']) !!}
 
-
-                        <div class="form-group">
-                            {!!Form::label('tratamiento_id', 'Tratamiento') !!}
-                            <br>
-                            {!! Form::select('tratamiento_id', $tratamientos, $medicacion->tratamiento_id, ['class' => 'form-control', 'required']) !!}
-                        </div>
+                        {!! Form::hidden('medicacion_id',$medicacion->id,['class'=>'form-control', 'required']) !!}
+                        {!! Form::hidden('tratamiento_id',$medicacion->tratamiento_id,['class'=>'form-control', 'required']) !!}
                         <div class="form-group">
                             {!!Form::label('medicina_id', 'Medicina') !!}
                             <br>

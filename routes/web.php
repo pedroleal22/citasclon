@@ -24,13 +24,23 @@ Route::resource('medicos', 'MedicoController');
 Route::resource('pacientes', 'PacienteController');
 
 Route::get('/citasPasadas','CitaController@citasPasadas')->name('citas.citasPasadas');
+Route::get('/create','TratamientoController@addTratamiento')->name('s.citasPasadas');
+
+//Route::get('citas/addTratamiento/{id}', 'CitaController@addTratamiento')->name('citas.addTratamiento'); //
+Route::get('tratamientos/addMedicacion/{id}', 'MedicacionController@addMedicacion')->name('tratamiento.addMedicacion'); //
+Route::get('medicacion/findByTratamiento/{id}', 'MedicacionController@findByTratamiento')->name('medicacion.findByTratamiento'); //
+Route::get('medicacion/createByTratamiento/{id}', 'MedicacionController@createByTratamiento')->name('medicacion.createByTratamiento'); //
+
+Route::post('medicacion/storeToTratamiento', 'MedicacionController@storeToTratamiento')->name('medicacion.storeToTratamiento'); //
+
+
 Route::resource('citas', 'CitaController');
 
 //Route::delete('enfermedads/destroyAll', 'EnfermedadController@destroyAll')->name('enfermedads.destroyAll');
 
 Route::resource('enfermedads', 'EnfermedadController');
 
-Route::resource('medicacions', 'MedicacionController');
+Route::resource('medicacion', 'MedicacionController');
 
 Route::resource('locations', 'LocationController');
 
