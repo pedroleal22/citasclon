@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cita;
 use App\Enfermedad;
 use App\Medicina;
 use App\Medico;
@@ -36,11 +37,11 @@ class TratamientoController extends Controller
         //            $table->dateTime('fecha_fin');
         //            $table->string('descripcion');
 
-        $medicos = Medico::all()->pluck('full_name','id');
-        $pacientes = Paciente::all()->pluck('full_name','id');
-        $enfermedads = Enfermedad::all()->pluck('nombreComun','id');
+        //$citas = Cita::all()->pluck('full_name','id');
 
-        return view('tratamientos/create',['medicos'=>$medicos, 'pacientes'=>$pacientes,'enfermedads'=>$enfermedads]);
+
+
+        return view('tratamientos/create');
 
 
     }
@@ -57,9 +58,7 @@ class TratamientoController extends Controller
             'fecha_inicio' => 'required|date|after:now',
             'fecha_fin' => 'required|date|after:fecha_inicio',
             'descripcion' => 'required|max:255',
-            'medico_id' => 'required|exists:medicos,id',
-            'paciente_id' => 'required|exists:pacientes,id',
-            'enfermedad_id' => 'required|exists:enfermedads,id'
+
         ]);
 
 
@@ -93,11 +92,9 @@ class TratamientoController extends Controller
     {
         $tratamiento = Tratamiento::find($id);
 
-        $medicos = Medico::all()->pluck('full_name','id');
-        $pacientes = Paciente::all()->pluck('full_name','id');
-        $enfermedads = Enfermedad::all()->pluck('nombreComun','id');
 
-        return view('tratamientos/edit',['tratamiento'=> $tratamiento, 'medicos'=>$medicos, 'pacientes'=>$pacientes, 'enfermedads'=>$enfermedads]);
+
+        return view('tratamientos/edit',['tratamiento'=> $tratamiento]);
 
     }
 
@@ -114,9 +111,7 @@ class TratamientoController extends Controller
             'fecha_inicio' => 'required|date|after:now',
             'fecha_fin' => 'required|date|after:fecha_inicio',
             'descripcion' => 'required|max:255',
-            'medico_id' => 'required|exists:medicos,id',
-            'paciente_id' => 'required|exists:pacientes,id',
-            'enfermedad_id' => 'required|exists:enfermedads,id'
+
         ]);
 
         $tratamiento=Tratamiento::find($id);

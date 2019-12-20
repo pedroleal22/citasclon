@@ -29,6 +29,7 @@ class Cita extends Model
 
 
 
+
 /*
       /** Calcular hora fin de una cita dada su duración @return string*/
 

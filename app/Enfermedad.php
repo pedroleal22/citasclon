@@ -17,9 +17,6 @@ class Enfermedad extends Model
     {
         return $this->hasMany('App\Paciente');
     }
-    public function tratamientos()
-    {
-        return $this->hasMany('App\Tratamiento');
-    }
+
 
 }

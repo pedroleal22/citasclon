@@ -19,10 +19,6 @@ class Medico extends Model
     {
         return $this->hasMany('App\Cita');
     }
-    public function tratamientos()
-    {
-        return $this->hasMany('App\Tratamiento');
-    }
 
     public function getFullNameAttribute()
     {

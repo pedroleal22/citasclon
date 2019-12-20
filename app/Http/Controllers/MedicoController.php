@@ -96,20 +96,7 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'especialidad_id' => 'required|exists:especialidads,id'
-        ]);
 
-        $medico = Medico::find($id);
-        $medico->fill($request->all());
-
-        $medico->save();
-
-        flash('Medico modificado correctamente');
-
-        return redirect()->route('medicos.index');
     }
 
     /**

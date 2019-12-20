@@ -30,6 +30,8 @@ Route::resource('citas', 'CitaController');
 
 Route::resource('enfermedads', 'EnfermedadController');
 
+Route::resource('medicacions', 'MedicacionController');
+
 Route::resource('locations', 'LocationController');
 
 Route::resource('medicinas','MedicinaController');

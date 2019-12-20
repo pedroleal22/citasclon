@@ -6,19 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tratamiento extends Model
 {
-    protected $fillable = ['fecha_inicio', 'fecha_fin', 'descripcion','medico_id','paciente_id','enfermedad_id'];
+    protected $fillable = ['fecha_inicio', 'fecha_fin', 'descripcion'];
 
-    public function medico()
+
+
+    public function medicacions()
     {
-        return $this->belongsTo('App\Medico');
+        return $this->hasMany('App\Medicacion');
     }
 
-    public function paciente()
-    {
-        return $this->belongsTo('App\Paciente');
-    }
-    public function enfermedad()
-    {
-        return $this->belongsTo('App\Enfermedad');
-    }
 }
