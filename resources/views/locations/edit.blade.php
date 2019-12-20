@@ -17,9 +17,11 @@
                             {!! Form::text('hospital',$location->hospital,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('consulta', 'Consulta') !!}
-                            {!! Form::text('consulta',$location->consulta,['class'=>'form-control', 'required']) !!}
+                            {!!Form::label('consulta_id', 'Consulta') !!}
+                            <br>
+                            {!! Form::select('consulta_id', $consultas, $location->consulta_id, ['class' => 'form-control', 'required']) !!}
                         </div>
+
 
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 

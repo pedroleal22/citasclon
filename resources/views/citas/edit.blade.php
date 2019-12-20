@@ -33,12 +33,12 @@
                             {!!Form::label('location_id', 'Hospital') !!}
                             <br>
                             {!! Form::select('location_id', $locations, $cita->location_id, ['class' => 'form-control']) !!}
-                        <!--</div>
+                        </div>
 
-                        <!--<div class="form-group"> -->
-                            {!!Form::label('location_id', 'Consulta') !!}
+                        <div class="form-group">
+                            {!!Form::label('consulta_id', 'Consulta') !!}
                             <br>
-                            {!! Form::select('location_id', $locationsConsulta, $cita->location_id, ['class' => 'form-control']) !!}
+                            {!! Form::select('consulta_id', $consultas, $cita->consulta_id, ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="form-group">

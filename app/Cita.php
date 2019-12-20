@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class Cita extends Model
 {
-    protected $fillable = ['fecha_hora', 'medico_id', 'paciente_id', 'location_id', 'duracion', 'hora_fin'];
+    protected $fillable = ['fecha_hora', 'medico_id', 'paciente_id', 'location_id','consulta_id', 'duracion', 'hora_fin'];
 
     public function medico()
     {
@@ -24,11 +24,15 @@ class Cita extends Model
     {
         return $this->belongsTo('App\Location');
     }
+    public function consulta()
+    {
+        return $this->belongsTo('App\Consulta');
+    }
 
-    public function getHoraFin()
+    /*public function getHoraFin()
     {
         return Carbon::parse(($this->fecha_hora)->modify("+{$this->duracion} minutes"));
-    }
+    } */
 
 
 

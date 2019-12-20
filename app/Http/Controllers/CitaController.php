@@ -1,24 +1,18 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use App\Consulta;
 use Illuminate\Http\Request;
 use App\Cita;
 use App\Medico;
 use App\Paciente;
 use App\Location;
-
 use Carbon\Carbon;
-
-
 class CitaController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,24 +20,22 @@ class CitaController extends Controller
      */
     public function index()
     {
-       $citas = Cita::all()->where('fecha_hora','>', Carbon::now());
+        $citas = Cita::all()->where('fecha_hora','>', Carbon::now());
+
         return view('citas/index',['citas'=>$citas]);
     }
-
     public function citasPasadas(){
-
         $citaspasadas = Cita::all()->where('fecha_hora','<', Carbon::now());
         return view('citas/citasPasadas',['citas'=>$citaspasadas]);
+
+
     }
     /*
     public function addTratamiento($id){
-
         $tratamiento = Tratamiento::find($id);
         $medicacions = Medicacion::where('tratamiento_id', $id)->get();
         return view('tratamiento/create', ['tratamiento' => $tratamiento, 'medicacions' => $medicacions]);
-
     }*/
-
     /**
      * Show the form for creating a new resource.
      *
@@ -54,12 +46,10 @@ class CitaController extends Controller
         $medicos = Medico::all()->pluck('full_name','id');
         $pacientes = Paciente::all()->pluck('full_name','id');
         $locations = Location::all()->pluck('hospital','id');
-        $locationsConsulta = Location::all()->pluck('consulta','id');
+        $consultas = Consulta::all()->pluck('nombre','id');
         //$locations = Location::all()->pluck('fullLocation','id');
-
-        return view('citas/create',['medicos'=>$medicos, 'pacientes'=>$pacientes, 'locations'=>$locations, 'locationsConsulta'=>$locationsConsulta]);
+        return view('citas/create',['medicos'=>$medicos, 'pacientes'=>$pacientes, 'locations'=>$locations, 'consultas'=>$consultas]);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -73,17 +63,14 @@ class CitaController extends Controller
             'paciente_id' => 'required|exists:pacientes,id',
             'fecha_hora' => 'required|date|after:now',
             'location_id' => 'required|max:255',
+            'consulta_id' => 'required|max:255',
             'duracion' => 'required|max:255',
         ]);
-
         $cita = new Cita($request->all());
         $cita->save();
-
         flash('Cita creada correctamente');
-
         return redirect()->route('citas.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -94,7 +81,6 @@ class CitaController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,17 +89,13 @@ class CitaController extends Controller
      */
     public function edit($id)
     {
-
         $cita = Cita::find($id);
-
         $medicos = Medico::all()->pluck('full_name','id');
         $pacientes = Paciente::all()->pluck('full_name','id');
         $locations = Location::all()->pluck('hospital','id');
-        $locationsConsulta = Location::all()->pluck('consulta','id');
-
-        return view('citas/edit',['cita'=> $cita, 'medicos'=>$medicos, 'pacientes'=>$pacientes, 'locations'=>$locations, 'locationsConsulta'=>$locationsConsulta]);
+        $consultas = Consulta::all()->pluck('nombre','id');
+        return view('citas/edit',['cita'=> $cita, 'medicos'=>$medicos, 'pacientes'=>$pacientes, 'locations'=>$locations, 'consultas'=>$consultas]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -124,22 +106,19 @@ class CitaController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-        'medico_id' => 'required|exists:medicos,id',
-        'paciente_id' => 'required|exists:pacientes,id',
-        'fecha_hora' => 'required|date|after:now',
-        'location_id' => 'required|max:255',
-        'duracion' => 'required|max:255',
-    ]);
-
+            'medico_id' => 'required|exists:medicos,id',
+            'paciente_id' => 'required|exists:pacientes,id',
+            'fecha_hora' => 'required|date|after:now',
+            'location_id' => 'required|max:255',
+            'consulta_id' => 'required|max:255',
+            'duracion' => 'required|max:255',
+        ]);
         $cita = Cita::find($id);
         $cita->fill($request->all());
         $cita->save();
-
         flash('Cita modificada correctamente');
-
         return redirect()->route('citas.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -151,7 +130,6 @@ class CitaController extends Controller
         $cita = Cita::find($id);
         $cita->delete();
         flash('Cita borrada correctamente');
-
         return redirect()->route('citas.index');
     }
 }

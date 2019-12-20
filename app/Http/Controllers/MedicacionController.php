@@ -13,9 +13,9 @@ class MedicacionController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index($id)
+    public function index()
     {
-        $medicacions = Medicacion::all()->where('tratamiento_id',$id)->get();
+        $medicacions = Medicacion::all()->where('tratamiento_id')->get();
         return view('medicacions/index',['medicacions'=>$medicacions]);
     }
     public function findByTratamiento($id)
@@ -29,9 +29,9 @@ class MedicacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        return view('medicacions/create', ['id'=> $id]);
+        return view('medicacions/create');
     }
 
     public function createByTratamiento($id){
@@ -121,7 +121,7 @@ class MedicacionController extends Controller
      * @param  \App\Medicacion  $medicacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
         $this->validate($request, [
             'tratamiento_id' => 'required|exists:tratamientos,id',

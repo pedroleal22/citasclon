@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Consulta;
 use App\Location;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('locations/create');
+        $consultas = Consulta::all()->pluck('nombre','id');
+        return view('locations/create',['consultas'=>$consultas]);
 
     }
 
@@ -45,7 +47,7 @@ class LocationController extends Controller
     {
         $this->validate($request, [
             'hospital' => 'required|max:255',
-            'consulta' => 'required|max:255'
+            'consulta_id' => 'required|exists:consultas,id'
         ]);
         $location = new Location($request->all());
         $location->save();
@@ -64,7 +66,7 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show($id)
     {
         //
     }
@@ -78,7 +80,9 @@ class LocationController extends Controller
     public function edit($id)
     {
         $location = Location::find($id);
-        return view('locations/edit', ['location' => $location]);
+        $consultas = Consulta::all()->pluck('nombre','id');
+
+        return view('locations/edit',['location'=> $location, 'consultas'=>$consultas]);
 
         /**
          * Update the specified resource in storage.
@@ -92,7 +96,8 @@ class LocationController extends Controller
     {
         $this->validate($request, [
             'hospital' => 'required|max:255',
-            'consulta' => 'required|max:255'
+            'consulta_id' => 'required|exists:consultas,id'
+
         ]);
         $location = Location::find($id);
         $location->fill($request->all());

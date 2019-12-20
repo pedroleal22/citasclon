@@ -6,16 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    protected $fillable = ['hospital', 'consulta'];
+    protected $fillable = ['hospital','consulta_id'];
 
     public function citas()
     {
         return $this->hasMany('App\Cita');
     }
 
-    public function getCompleteLocation()
+
+    public function consulta()
     {
-        return $this->hospital .', consulta  '.$this->consulta;
+        return $this->belongsTo('App\Consulta'); //related
     }
 
+
+    /*  public function getCompleteLocation()
+      {
+          return $this->hospital .', consulta  '.$this->consulta;
+      }*/
 }

@@ -35,17 +35,13 @@
                         </div>
 
                         <div class="form-group">
-                            {!!Form::label('location_id', 'Consulta') !!}
+                            {!!Form::label('consulta_id', 'Consulta') !!}
                             <br>
-                            {!! Form::select('location_id', $locationsConsulta, ['class' => 'form-control']) !!}
+                            {!! Form::select('consulta_id', $consultas, ['class' => 'form-control']) !!}
                         </div>
-                    <!--
 
-                        <div class="form-group">
-                            {!! Form::label('duracion', 'Duracion') !!}
-                            {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}
-                        </div>
-                            -->
+
+
 
                         <div class="form-group">
                             <label name= "duracion" for="duracion"> Duración </label>

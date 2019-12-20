@@ -31,7 +31,8 @@ Route::get('tratamientos/addMedicacion/{id}', 'MedicacionController@addMedicacio
 Route::get('medicacion/findByTratamiento/{id}', 'MedicacionController@findByTratamiento')->name('medicacion.findByTratamiento'); //
 Route::get('medicacion/createByTratamiento/{id}', 'MedicacionController@createByTratamiento')->name('medicacion.createByTratamiento'); //
 
-Route::post('medicacion/storeToTratamiento', 'MedicacionController@storeToTratamiento')->name('medicacion.storeToTratamiento'); //
+Route::post('medicacion/storeToTratamiento', 'MedicacionController@storeToTratamiento')->name('medicacion.storeToTratamiento');
+
 
 
 Route::resource('citas', 'CitaController');
@@ -39,6 +40,8 @@ Route::resource('citas', 'CitaController');
 //Route::delete('enfermedads/destroyAll', 'EnfermedadController@destroyAll')->name('enfermedads.destroyAll');
 
 Route::resource('enfermedads', 'EnfermedadController');
+Route::resource('medicacions', 'MedicacionController');
+Route::resource('consultas', 'ConsultaController');
 
 Route::resource('medicacion', 'MedicacionController');
 

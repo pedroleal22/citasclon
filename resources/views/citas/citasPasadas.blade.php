@@ -20,9 +20,8 @@
                                 <th>Fecha</th>
                                 <th>Medico</th>
                                 <th>Paciente</th>
-                                <th colspan="2">Localización</th>
-                                <!--<td>Hospital</td>
-                                <td>Consulta</td> -->
+                                <th>Localizacion</th>
+                                <th>Consulta</th>
 
 
 
@@ -37,7 +36,7 @@
                                     <td>{{ $cita->medico->full_name }}</td>
                                     <td>{{ $cita->paciente->full_name}}</td>
                                     <td>{{ $cita->location->hospital}}</td>
-                                    <td>{{ $cita->location->consulta}}</td>
+                                    <td>{{ $cita->consulta->nombre}}</td>
                                     <td>{{ $cita->duracion}}</td>
                                     <td>{{ $cita->hora_fin}}</td>
 
