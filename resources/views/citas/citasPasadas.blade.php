@@ -38,7 +38,7 @@
                                     <td>{{ $cita->location->hospital}}</td>
                                     <td>{{ $cita->consulta->nombre}}</td>
                                     <td>{{ $cita->duracion}}</td>
-                                    <td>{{ $cita->hora_fin}}</td>
+
 
 
 
