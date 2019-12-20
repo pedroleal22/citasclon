@@ -32,7 +32,7 @@
                                 <th>Consulta</th>
 
                                 <th>Duración</th>
-                                <th>Hora finalización</th>
+
 
 
                                 <th colspan="3">Acciones</th>

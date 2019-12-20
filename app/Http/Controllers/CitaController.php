@@ -67,6 +67,9 @@ class CitaController extends Controller
             'duracion' => 'required|max:255',
         ]);
         $cita = new Cita($request->all());
+
+
+
         $cita->save();
         flash('Cita creada correctamente');
         return redirect()->route('citas.index');
